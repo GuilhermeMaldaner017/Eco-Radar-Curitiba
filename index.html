@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="EcoRadar Curitiba: Encontre pontos de descarte de lixo eletrônico perto de você." />
+    <meta name="theme-color" content="#1a1c1f" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <style>
+      /* CSS critico: previne FOUC sem interferir no dimensionamento de SVGs */
+      html, body { margin: 0; background: #090b0e; color: #f8fafc; }
+      html:not(.is-ready) .app { opacity: 0; pointer-events: none; }
+      .app { transition: opacity 0.25s ease-out; }
+    </style>
+    <noscript><style>html:not(.is-ready) .app { opacity: 1; pointer-events: auto; }</style></noscript>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="EcoRadar" />
+    <title>EcoRadar Curitiba</title>
+
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preconnect" href="https://rsms.me/" crossorigin />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  </head>
+
+  <body>
+    <!-- ─── SVG Icon Sprite ────────────────────────────────────────────── -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+        <symbol id="i-location" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
+        <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></symbol>
+        <symbol id="i-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+        <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92Z"/></symbol>
+        <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+        <symbol id="i-map-pin" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7.05 11.5 7.35 11.76a1 1 0 0 0 1.3 0C12.95 21.5 20 15.4 20 10a8 8 0 0 0-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></symbol>
+        <symbol id="i-recycle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"/><path d="m14 16-3 3 3 3"/><path d="M8.293 13.596 4.5 12.5 5.586 8.84"/><path d="m9.4 6.5 2.41-4.213a1.83 1.83 0 0 1 1.563-.881 1.785 1.785 0 0 1 1.561.88l3.945 6.97-1.108 4.114"/><path d="m13 10 1 4-4 1"/></symbol>
+        <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></symbol>
+        <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+        <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></symbol>
+        <symbol id="i-google-maps" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+        <symbol id="i-waze" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 7.1 15.6 4 12 4 7.6 4 4 7.6 4 12c0 1.2.3 2.3.8 3.3L4 19l3.7-.8c1.3.8 2.8 1.3 4.3 1.3 3.5 0 6.6-2.2 7.7-5.5"/><circle cx="9" cy="11" r="1" fill="currentColor"/><circle cx="15" cy="11" r="1" fill="currentColor"/><path d="M10 14c.7.7 1.3 1 2 1s1.3-.3 2-1"/></symbol>
+      </defs>
+    </svg>
+
+    <!-- App Shell -->
+    <div class="app">
+
+      <!-- Mapa (camada de fundo, ocupa toda viewport) -->
+      <main id="map" class="map" role="main" aria-label="Mapa de pontos de coleta"></main>
+
+      <!-- Header flutuante HUD -->
+      <header class="topbar" role="banner">
+        <div class="topbar__brand">
+          <span class="topbar__icon" aria-hidden="true"><svg><use href="#i-recycle"/></svg></span>
+          <div class="topbar__title">
+            <strong>EcoRadar</strong>
+            <span>Curitiba</span>
+          </div>
+        </div>
+
+        <!-- Grupo da Direita: Telemetria HUD + Pontos Monitorados -->
+        <div class="topbar__right-group">
+          <div class="hud-telemetry" aria-hidden="true">
+            <span class="hud-radar-badge">
+              <span class="hud-radar-dot"></span>
+              RADAR ATIVO
+            </span>
+            <span class="hud-telemetry-sep">/</span>
+            <span class="hud-coords" id="hud-coords">25.4284° S, 49.2731° W</span>
+          </div>
+
+          <div class="topbar__stats" id="topbar-stats" aria-live="polite">
+            <span class="pulse-indicator" aria-hidden="true">
+              <span class="pulse-indicator__ring"></span>
+              <span class="pulse-indicator__dot"></span>
+            </span>
+            <span class="topbar__stat-value" id="topbar-count">...</span>
+            <span class="topbar__stat-label">pontos monitorados</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Botao flutuante HUD para abrir o menu no mobile -->
+      <button class="sidebar-reopen" id="btn-sidebar-reopen" type="button" aria-label="Explorar lista de pontos de coleta" aria-controls="sidebar">
+        <span class="sidebar-reopen__radar" aria-hidden="true">
+          <span class="sidebar-reopen__pulse"></span>
+          <svg><use href="#i-search"/></svg>
+        </span>
+        <span class="sidebar-reopen__text">Explorar pontos</span>
+        <span class="sidebar-reopen__badge" id="reopen-badge">22</span>
+      </button>
+
+      <!-- Backdrop overlay para fechar o menu ao tocar fora no mobile -->
+      <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+      <!-- Sidebar flutuante (painel de busca + lista) -->
+      <aside class="sidebar" id="sidebar" aria-label="Filtros e lista de pontos">
+        <div class="sheet-handle" id="sheet-handle" aria-hidden="true" title="Recolher ou expandir"></div>
+        <div class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title">Pontos de coleta</h2>
+            <button class="panel__close" id="btn-sidebar-close" type="button" aria-label="Recolher lista" aria-controls="sidebar">
+              <svg aria-hidden="true"><use href="#i-close"/></svg>
+            </button>
+          </div>
+          <div class="panel__search">
+            <span class="panel__search-icon" aria-hidden="true"><svg><use href="#i-search"/></svg></span>
+            <input
+              type="search"
+              id="search-input"
+              class="panel__search-input"
+              placeholder="Buscar por nome ou bairro"
+              aria-label="Buscar pontos de coleta"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button class="panel__search-clear" id="search-clear" aria-label="Limpar busca" hidden>
+              <svg aria-hidden="true"><use href="#i-close"/></svg>
+            </button>
+          </div>
+
+          <button class="btn btn--locate-hud btn--full" id="btn-locate" type="button">
+            <span class="btn--locate-hud__glow" aria-hidden="true"></span>
+            <svg aria-hidden="true"><use href="#i-location"/></svg>
+            <span>Usar minha localização</span>
+          </button>
+        </div>
+
+        <div class="panel panel--filters">
+          <div class="filters">
+            <p class="filters__label" id="lbl-items">Tipo de resíduo</p>
+            <div class="filters__chips" id="filter-items" role="group" aria-labelledby="lbl-items">
+              <button class="chip" data-item="batteries"   type="button">Pilhas</button>
+              <button class="chip" data-item="phones"      type="button">Celulares</button>
+              <button class="chip" data-item="computers"   type="button">Computadores</button>
+              <button class="chip" data-item="electronics" type="button">Eletrônicos</button>
+              <button class="chip" data-item="tvs"         type="button">TVs</button>
+              <button class="chip" data-item="lightbulbs"  type="button">Lâmpadas</button>
+              <button class="chip" data-item="cables"      type="button">Cabos</button>
+              <button class="chip" data-item="printers"    type="button">Impressoras</button>
+            </div>
+          </div>
+
+          <div class="filters">
+            <p class="filters__label" id="lbl-cat">Tipo de local</p>
+            <div class="filters__chips" id="filter-categories" role="group" aria-labelledby="lbl-cat">
+              <button class="chip chip--cat-ecoponto" data-category="ecoponto" type="button">Ecopontos</button>
+              <button class="chip chip--cat-store"    data-category="store"    type="button">Lojas certificadas</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="results">
+          <div class="results__header">
+            <p class="results__count" id="points-count" role="status" aria-live="polite">Carregando…</p>
+          </div>
+          <ul id="points-list" class="results__list" role="list" aria-label="Pontos de coleta encontrados"></ul>
+        </div>
+      </aside>
+
+      <!-- Dock Tático HUD de Controles do Mapa -->
+      <nav class="hud-dock" aria-label="Controles táticos do mapa">
+        <button class="hud-dock__btn" id="zoom-in" type="button" aria-label="Aumentar zoom" title="Aumentar zoom (+)">
+          <svg aria-hidden="true"><use href="#i-plus"/></svg>
+        </button>
+        <div class="hud-dock__sep" aria-hidden="true"></div>
+        <button class="hud-dock__btn" id="zoom-out" type="button" aria-label="Diminuir zoom" title="Diminuir zoom (-)">
+          <svg aria-hidden="true"><use href="#i-minus"/></svg>
+        </button>
+        <div class="hud-dock__sep" aria-hidden="true"></div>
+        <button class="hud-dock__btn" id="map-reset" type="button" aria-label="Recentralizar em Curitiba" title="Recentralizar Curitiba">
+          <svg aria-hidden="true"><use href="#i-target"/></svg>
+        </button>
+        <div class="hud-dock__sep" aria-hidden="true"></div>
+        <button class="hud-dock__btn hud-dock__btn--locate" id="map-locate" type="button" aria-label="Centralizar na minha localização" title="Minha localização">
+          <svg aria-hidden="true"><use href="#i-location"/></svg>
+        </button>
+      </nav>
+
+      <!-- Legenda HUD -->
+      <aside class="map-legend" aria-label="Legenda de categorias">
+        <div class="map-legend__header">
+          <span class="map-legend__radar-dot" aria-hidden="true"></span>
+          <span class="map-legend__title">LEGENDA DO RADAR</span>
+        </div>
+        <ul class="map-legend__list">
+          <li>
+            <span class="map-legend__token map-legend__token--ecoponto" aria-hidden="true"></span>
+            <span>Ecopontos municipais</span>
+          </li>
+          <li>
+            <span class="map-legend__token map-legend__token--store" aria-hidden="true"></span>
+            <span>Lojas certificadas</span>
+          </li>
+          <li>
+            <span class="map-legend__token map-legend__token--cluster" aria-hidden="true"></span>
+            <span>Agrupamento misto</span>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Ticker de Telemetria Inferior HUD -->
+      <div class="hud-bottom-ticker" id="hud-bottom-ticker" aria-hidden="true">
+        <div class="hud-ticker-item">
+          <span class="hud-ticker-dot"></span>
+          <span>CURITIBA // PR</span>
+        </div>
+        <span class="hud-ticker-sep">/</span>
+        <div class="hud-ticker-item">
+          <span id="hud-zoom-label">ZOOM 12x</span>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
